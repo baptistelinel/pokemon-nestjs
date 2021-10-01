@@ -7,6 +7,15 @@ import { PokemonEntity } from './pokemon.schema';
 export class PokemonService {
   constructor(private readonly pokemonRepository: PokemonRepository) {}
 
+  async deleteOne(name: string) {
+    const pokemon = await this.pokemonRepository.getOneFromDatabase(name);
+    if (null === pokemon) {
+      throw new BadRequestException(`Unkwown pokemon with name ${name}`);
+    }
+    console.log('totototototototo');
+    return this.pokemonRepository.deleteOneInDatabase(name);
+  }
+
   async getList(): Promise<PokemonEntity[]> {
     return this.pokemonRepository.getListFromDatabase();
   }

@@ -3,6 +3,7 @@ import {
   Get,
   Post,
   Body,
+  Delete,
   Param,
   UsePipes,
   ValidationPipe,
@@ -31,5 +32,10 @@ export class PokemonController {
     @Body() postedPokemon: PokemonCreateDto,
   ): Promise<PokemonEntity> {
     return this.pokemonService.store(postedPokemon);
+  }
+
+  @Delete(':name')
+  deleteOnePokemon(@Param() params: { name: string }) {
+    return this.pokemonService.deleteOne(params.name);
   }
 }

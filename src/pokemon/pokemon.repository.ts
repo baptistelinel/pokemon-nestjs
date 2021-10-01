@@ -11,6 +11,10 @@ export class PokemonRepository {
     private readonly pokemonEntity: Model<PokemonEntity>,
   ) {}
 
+  async deleteOneInDatabase(name: string) {
+    return this.pokemonEntity.deleteOne({ name });
+  }
+
   async storeInDatabase(
     postedPokemon: PokemonCreateDto,
   ): Promise<PokemonEntity> {
