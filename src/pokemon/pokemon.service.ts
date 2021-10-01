@@ -12,7 +12,6 @@ export class PokemonService {
     if (null === pokemon) {
       throw new BadRequestException(`Unkwown pokemon with name ${name}`);
     }
-    console.log('totototototototo');
     return this.pokemonRepository.deleteOneInDatabase(name);
   }
 
