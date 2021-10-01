@@ -17,6 +17,10 @@ export class PokemonRepository {
     return this.pokemonEntity.create(postedPokemon);
   }
 
+  async getListFromDatabase(): Promise<PokemonEntity[]> {
+    return this.pokemonEntity.find();
+  }
+
   async getOneFromDatabase(name: string): Promise<PokemonEntity> {
     return this.pokemonEntity.findOne({ name });
   }

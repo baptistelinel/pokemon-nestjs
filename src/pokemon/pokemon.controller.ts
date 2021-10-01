@@ -15,9 +15,14 @@ import { PokemonEntity } from './pokemon.schema';
 export class PokemonController {
   constructor(private readonly pokemonService: PokemonService) {}
 
+  @Get()
+  getPokemons(): Promise<PokemonEntity[]> {
+    return this.pokemonService.getList();
+  }
+
   @Get(':name')
-  getPokemons(@Param() params: { name: string }): string {
-    return 'This returns the list of Pokemons';
+  getOnePokemon(@Param() params: { name: string }): Promise<PokemonEntity> {
+    return this.pokemonService.getOne(params.name);
   }
 
   @Post()
