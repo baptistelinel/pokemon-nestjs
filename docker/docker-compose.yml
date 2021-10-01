@@ -1,0 +1,9 @@
+version: '3'
+services:
+  inup_database:
+    container_name: pokemon_database
+    ports:
+      - 27017:27017
+    build:
+      context: '.'
+      dockerfile: 'Dockerfile.mongodb'
