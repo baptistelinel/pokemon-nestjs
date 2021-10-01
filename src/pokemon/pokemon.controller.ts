@@ -35,7 +35,7 @@ export class PokemonController {
   }
 
   @Delete(':name')
-  deleteOnePokemon(@Param() params: { name: string }) {
+  deleteOnePokemon(@Param() params: { name: string }): Promise<PokemonEntity> {
     return this.pokemonService.deleteOne(params.name);
   }
 }

@@ -12,7 +12,7 @@ export class PokemonRepository {
   ) {}
 
   async deleteOneInDatabase(name: string) {
-    return this.pokemonEntity.deleteOne({ name });
+    return this.pokemonEntity.findOneAndDelete({ name });
   }
 
   async storeInDatabase(
