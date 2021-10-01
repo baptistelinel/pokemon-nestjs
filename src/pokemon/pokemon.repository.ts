@@ -16,4 +16,8 @@ export class PokemonRepository {
   ): Promise<PokemonEntity> {
     return this.pokemonEntity.create(postedPokemon);
   }
+
+  async getOneFromDatabase(name: string): Promise<PokemonEntity> {
+    return this.pokemonEntity.findOne({ name });
+  }
 }

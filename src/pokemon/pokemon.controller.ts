@@ -17,7 +17,6 @@ export class PokemonController {
 
   @Get(':name')
   getPokemons(@Param() params: { name: string }): string {
-    console.log(params.name);
     return 'This returns the list of Pokemons';
   }
 
