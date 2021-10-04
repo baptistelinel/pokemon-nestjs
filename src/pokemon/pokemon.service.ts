@@ -13,7 +13,7 @@ export class PokemonService {
       name,
     );
     if (null === pokemonDeleted) {
-      throw new BadRequestException(`Unkwown pokemon with name ${name}.`);
+      throw new BadRequestException(`Unknown pokemon with name ${name}.`);
     }
     return pokemonDeleted;
   }
