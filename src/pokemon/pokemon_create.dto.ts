@@ -2,14 +2,14 @@ import { IsNumber, IsString } from 'class-validator';
 
 export class PokemonCreateDto {
   @IsNumber()
-  id: number;
+  id!: number;
 
   @IsString()
-  name: string;
+  name!: string;
 
   @IsNumber()
-  height: number;
+  height!: number;
 
   @IsNumber()
-  weight: number;
+  weight!: number;
 }

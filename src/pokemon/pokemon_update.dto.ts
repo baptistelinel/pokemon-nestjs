@@ -3,17 +3,17 @@ import { IsNumber, IsString, IsOptional } from 'class-validator';
 export class PokemonUpdateDto {
   @IsNumber()
   @IsOptional()
-  id: number;
+  id!: number;
 
   @IsString()
   @IsOptional()
-  name: string;
+  name!: string;
 
   @IsNumber()
   @IsOptional()
-  height: number;
+  height!: number;
 
   @IsNumber()
   @IsOptional()
-  weight: number;
+  weight!: number;
 }
