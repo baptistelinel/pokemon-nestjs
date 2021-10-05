@@ -36,7 +36,6 @@ export class PokemonService {
     );
 
     if (pokemonStored) {
-      console.log('in Pokemon stored condition');
       throw new BadRequestException(
         `A pokemon with ${postedPokemon.name}  already exists.`,
       );

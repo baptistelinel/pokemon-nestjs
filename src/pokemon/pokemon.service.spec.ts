@@ -1,9 +1,10 @@
 import { BadRequestException } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 
-const mockPokemonRepository = jest
-  .fn()
-  .mockImplementation(() => ({ getOneFromDatabase: jest.fn() }));
+const mockPokemonRepository = jest.fn().mockImplementation(() => ({
+  getOneFromDatabase: jest.fn(),
+  storeInDatabase: jest.fn(),
+}));
 
 const pokemon = {
   name: 'Pikachu',
@@ -22,21 +23,16 @@ describe('PokemonService', () => {
 
   afterEach(() => {
     mockPokemonRepositoryInstance.getOneFromDatabase.mockReset();
+    mockPokemonRepositoryInstance.storeInDatabase.mockReset();
   });
 
-  it('should store a new pokemon', () => {
-    mockPokemonRepositoryInstance.getOneFromDatabase.mockImplementation(
-      () => null,
-    );
-
-    pokemonService.store(pokemon);
-
-    expect(
-      mockPokemonRepositoryInstance.getOneFromDatabase,
-    ).toHaveBeenCalledWith(pokemon.name);
+  it('should store a new pokemon', async () => {
+    mockPokemonRepositoryInstance.getOneFromDatabase.mockResolvedValue(null);
+    mockPokemonRepositoryInstance.storeInDatabase.mockResolvedValue(pokemon);
+    await expect(pokemonService.store(pokemon)).resolves.toBe(pokemon);
   });
 
-  it('should not add a new pokemon, already exists', async () => {
+  it('should not store a new pokemon, already exists', async () => {
     mockPokemonRepositoryInstance.getOneFromDatabase.mockResolvedValue(pokemon);
     await expect(pokemonService.store(pokemon)).rejects.toThrow(
       BadRequestException,
