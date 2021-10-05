@@ -4,16 +4,16 @@ import { Document } from 'mongoose';
 @Schema()
 export class PokemonEntity extends Document {
   @Prop({ required: true })
-  id: number;
+  id!: number;
 
   @Prop({ required: true })
-  name: string;
+  name!: string;
 
   @Prop({ required: true })
-  height: number;
+  height!: number;
 
   @Prop({ required: true })
-  weight: number;
+  weight!: number;
 }
 
 export const PokemonSchema = SchemaFactory.createForClass(PokemonEntity);

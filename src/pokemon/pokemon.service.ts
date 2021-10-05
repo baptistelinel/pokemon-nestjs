@@ -34,11 +34,14 @@ export class PokemonService {
     const pokemonStored = await this.pokemonRepository.getOneFromDatabase(
       postedPokemon.name,
     );
+
     if (pokemonStored) {
+      console.log('in Pokemon stored condition');
       throw new BadRequestException(
         `A pokemon with ${postedPokemon.name}  already exists.`,
       );
     }
+
     return this.pokemonRepository.storeInDatabase(postedPokemon);
   }
 

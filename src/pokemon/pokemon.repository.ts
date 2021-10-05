@@ -12,7 +12,7 @@ export class PokemonRepository {
     private readonly pokemonEntity: Model<PokemonEntity>,
   ) {}
 
-  async deleteOneInDatabase(name: string) {
+  async deleteOneInDatabase(name: string): Promise<PokemonEntity | null> {
     return this.pokemonEntity.findOneAndDelete({ name });
   }
 
@@ -26,7 +26,7 @@ export class PokemonRepository {
     return this.pokemonEntity.find();
   }
 
-  async getOneFromDatabase(name: string): Promise<PokemonEntity> {
+  async getOneFromDatabase(name: string): Promise<PokemonEntity | null> {
     return this.pokemonEntity.findOne({ name });
   }
 
