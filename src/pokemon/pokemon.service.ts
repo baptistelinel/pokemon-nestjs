@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PokemonCreateDto } from './pokemon_create.dto';
 import { PokemonRepository } from './pokemon.repository';
 import { PokemonEntity } from './pokemon.schema';
@@ -13,7 +17,7 @@ export class PokemonService {
       name,
     );
     if (null === pokemonDeleted) {
-      throw new BadRequestException(`Unknown pokemon with name ${name}.`);
+      throw new NotFoundException(`Unknown pokemon with name ${name}.`);
     }
     return pokemonDeleted;
   }
@@ -24,8 +28,8 @@ export class PokemonService {
 
   async getOne(name: string): Promise<PokemonEntity> {
     const pokemon = await this.pokemonRepository.getOneFromDatabase(name);
-    if (!pokemon) {
-      throw new BadRequestException(`Unkwown pokemon with name ${name}.`);
+    if (null === pokemon) {
+      throw new NotFoundException(`Unkwown pokemon with name ${name}.`);
     }
     return pokemon;
   }
@@ -50,7 +54,7 @@ export class PokemonService {
       update,
     );
     if (null === pokemonUpdated) {
-      throw new BadRequestException(`Unkwown pokemon with name ${name}.`);
+      throw new NotFoundException(`Unkwown pokemon with name ${name}.`);
     }
     return pokemonUpdated;
   }
